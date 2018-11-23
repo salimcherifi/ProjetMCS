@@ -2,9 +2,7 @@ package com.example.salimcherifi.projetmcs;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
@@ -12,7 +10,6 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -21,19 +18,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Random;
 
-public class homePage extends Activity {
+public class homePage extends Activity implements AdapterView.OnItemClickListener {
 
     private static final int RECORDER_BPP = 16;
     private static final String AUDIO_RECORDER_FILE_EXT_WAV = ".wav";
@@ -72,6 +66,13 @@ public class homePage extends Activity {
                 AudioFormat.ENCODING_PCM_16BIT);
 
 
+        setListListener();
+
+
+    }
+
+
+    private void setListListener(){
         list.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
 
             @Override
@@ -114,7 +115,6 @@ public class homePage extends Activity {
 
         });
     }
-
 
     private void addOrdersToSpinner() {
         String[] s = new String[]{"avance", "recule", "droite", "gauche", "etat_durgence", "tourne_droite", "tourne_gauche", "fais_un_flip", "arrete_toi"};
@@ -401,5 +401,9 @@ public class homePage extends Activity {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }
 
